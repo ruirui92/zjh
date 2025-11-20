@@ -4,127 +4,139 @@
 <meta charset="UTF-8" />
 <title>ZhaJinHua</title>
 <style>
+:root{
+    --table-green:#0b6d4a;
+    --table-dark:#0a2f2c;
+    --gold:#ffb347;
+}
+*{box-sizing:border-box;}
 body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#114b5f;
-    color:#fff;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#0a1f2f;
+    color:#f4f4f4;
     display:flex;
     flex-direction:column;
     align-items:center;
+    padding-bottom:20px;
 }
+h1{margin:12px 0 6px;}
+#settings{
+    width:90vw;
+    max-width:1100px;
+    background:#0f2e43;
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:12px;
+    padding:12px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:10px;
+    align-items:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.35);
+}
+.setting-row{display:flex;align-items:center;gap:6px;}
+.setting-row label{flex:1;}
+.setting-row input{width:80px;padding:6px;border-radius:6px;border:1px solid #1f4b60;background:#0c1e2b;color:#f4f4f4;}
+#startBtn{grid-column:1/-1;justify-self:flex-start;padding:10px 16px;border:none;border-radius:8px;background:var(--gold);color:#111;font-weight:bold;cursor:pointer;}
 #table{
     position:relative;
     width:90vw;
-    max-width:1000px;
+    max-width:1100px;
     height:70vh;
-    margin-top:20px;
-    background:radial-gradient(circle at center,#0b3c4d,#082f3c);
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(0,0,0,0.6) inset;
+    min-height:480px;
+    margin-top:14px;
+    background:radial-gradient(circle at 50% 45%,#11805d,#0b5f46 45%, #07362b 75%, #021a1f);
+    border-radius:50%;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6) inset,0 8px 18px rgba(0,0,0,0.4);
+    overflow:hidden;
 }
 .player{
     position:absolute;
-    width:140px;
-    height:120px;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.2);
+    width:160px;
+    height:140px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12);
     border-radius:12px;
     padding:8px;
     text-align:center;
-    box-shadow:0 2px 6px rgba(0,0,0,0.4);
+    box-shadow:0 4px 10px rgba(0,0,0,0.4);
 }
+.player .name{font-weight:bold;margin-bottom:2px;}
 .avatar{
-    width:40px;
-    height:40px;
-    margin:0 auto 6px;
-    background:linear-gradient(135deg,#ffb347,#ffcc33);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
+    width:48px;height:48px;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:26px;background:linear-gradient(135deg,#fcd34d,#f59e0b);
 }
-.cards{
-    display:flex;
-    justify-content:center;
-    gap:6px;
-    margin-top:4px;
-}
+.status{font-size:13px;color:#cfe9f7;}
+.cards{display:flex;justify-content:center;gap:6px;margin-top:6px;}
 .card{
-    width:28px;
-    height:38px;
-    background:#f8f8f8;
-    color:#222;
-    border:1px solid #ccc;
-    border-radius:4px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
+    width:34px;height:46px;background:#fefefe;color:#111;border:1px solid #ccc;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px;box-shadow:0 2px 5px rgba(0,0,0,0.35);
 }
-.hidden-card{
-    background:#36454f;
-    border:1px solid #1b262c;
-    color:#36454f;
-}
+.hidden-card{background:#2d3e50;border-color:#111;color:#2d3e50;}
 #controls{
     margin-top:10px;
     display:flex;
     gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 button{
-    padding:8px 12px;
+    padding:10px 14px;
     border:none;
-    border-radius:6px;
-    background:#ffb347;
+    border-radius:8px;
+    background:var(--gold);
     color:#111;
     font-weight:bold;
     cursor:pointer;
 }
-button:disabled{
-    background:#777;
-    color:#ccc;
-    cursor:not-allowed;
-}
+button:disabled{background:#666;color:#ccc;cursor:not-allowed;}
 #log{
     width:90vw;
-    max-width:1000px;
-    height:140px;
+    max-width:1100px;
+    height:160px;
     background:#0b2b38;
     margin-top:12px;
     padding:10px;
-    border-radius:10px;
+    border-radius:12px;
     overflow-y:auto;
-    box-shadow:0 0 10px rgba(0,0,0,0.4) inset;
+    box-shadow:0 0 10px rgba(0,0,0,0.45) inset;
     font-size:14px;
 }
 #pot{
     position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
+    left:50%;top:50%;transform:translate(-50%,-50%);
     text-align:center;
-    font-size:18px;
+    font-size:20px;
+    font-weight:bold;
+    padding:10px 16px;
+    background:rgba(0,0,0,0.35);
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.2);
 }
 #overlay{
-    position:fixed;
-    left:0;top:0;right:0;bottom:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,0.6);
+    position:fixed;left:0;top:0;right:0;bottom:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.65);z-index:20;
 }
 #overlayContent{
-    background:#0b3c4d;
-    padding:20px 30px;
-    border-radius:12px;
+    background:#0f3145;
+    padding:22px 30px;
+    border-radius:14px;
     text-align:center;
+    min-width:320px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.5);
 }
+#overlayContent h2{margin-top:0;}
+#overlayContent button{margin-top:12px;}
 </style>
 </head>
 <body>
-<h1>Chinese ZhaJinHua</h1>
+<h1>Chinese ZhaJinHua (炸金花)</h1>
+<div id="settings">
+    <div class="setting-row"><label for="p0">Player 0 (You) Chips</label><input id="p0" type="number" value="500"></div>
+    <div class="setting-row"><label for="p1">Calm AI Chips</label><input id="p1" type="number" value="500"></div>
+    <div class="setting-row"><label for="p2">Rich AI Chips</label><input id="p2" type="number" value="1000"></div>
+    <div class="setting-row"><label for="p3">Tricky AI Chips</label><input id="p3" type="number" value="500"></div>
+    <div class="setting-row"><label for="p4">Rookie AI Chips</label><input id="p4" type="number" value="300"></div>
+    <div class="setting-row"><label for="ante">Base Ante</label><input id="ante" type="number" value="5"></div>
+    <button id="startBtn">Start Game</button>
+</div>
 <div id="table">
     <div id="pot">Pot: 0</div>
 </div>
@@ -138,47 +150,50 @@ button:disabled{
 <div id="log"></div>
 <div id="overlay">
     <div id="overlayContent">
+        <h2>Round Result</h2>
         <div id="resultText"></div>
-        <button id="newRoundBtn">Start Next Round</button>
+        <button id="newRoundBtn">Next Round</button>
     </div>
 </div>
 <script>
 (function(){
     const positions=[
         {x:50,y:80},
-        {x:82,y:65},
-        {x:70,y:20},
-        {x:30,y:20},
-        {x:18,y:65}
+        {x:78,y:68},
+        {x:70,y:24},
+        {x:30,y:24},
+        {x:22,y:68}
     ];
     const suits=['♠','♥','♣','♦'];
     const ranks=['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-    const maxPotCap=500;
-
+    const potCap=500;
     class Player{
         constructor(id,name,type){
-            this.id=id;this.name=name;this.type=type;
-            this.chips=500;this.hand=[];this.folded=false;this.looked=false;this.currentBet=0;this.allin=false;
+            this.id=id;this.name=name;this.type=type;this.avatar=id===0?'😎':'🤖';
+            this.chips=0;this.hand=[];this.folded=false;this.looked=false;this.currentBet=0;this.allin=false;
         }
-        resetForRound(){
+        resetRound(){
             this.hand=[];this.folded=false;this.looked=false;this.currentBet=0;this.allin=false;
         }
     }
-
     class Game{
         constructor(){
             this.players=[
-                new Player(0,'You','human'),
+                new Player(0,'Player 0','human'),
                 new Player(1,'Calm AI','calm'),
                 new Player(2,'Rich AI','rich'),
                 new Player(3,'Tricky AI','tricky'),
                 new Player(4,'Rookie AI','rookie')
             ];
             this.dealer=0;
-            this.pot=0;this.currentBet=0;this.turn=1;this.activeCount=5;this.betRound=1;
+            this.baseAnte=5;
+            this.pot=0;this.currentBet=0;this.turn=0;this.betRound=1;this.activeCount=this.players.length;
             this.logBox=document.getElementById('log');
             this.potBox=document.getElementById('pot');
             this.table=document.getElementById('table');
+            this.overlay=document.getElementById('overlay');
+            this.resultText=document.getElementById('resultText');
+            this.newRoundBtn=document.getElementById('newRoundBtn');
             this.buttons={
                 look:document.getElementById('lookBtn'),
                 call:document.getElementById('callBtn'),
@@ -186,62 +201,68 @@ button:disabled{
                 fold:document.getElementById('foldBtn'),
                 compare:document.getElementById('compareBtn')
             };
-            this.overlay=document.getElementById('overlay');
-            this.resultText=document.getElementById('resultText');
-            this.newRoundBtn=document.getElementById('newRoundBtn');
+            this.settingInputs=[
+                document.getElementById('p0'),
+                document.getElementById('p1'),
+                document.getElementById('p2'),
+                document.getElementById('p3'),
+                document.getElementById('p4')
+            ];
+            this.anteInput=document.getElementById('ante');
+            this.startBtn=document.getElementById('startBtn');
+            this.createSeats();
             this.attachEvents();
-            this.renderSeats();
-            this.startRound();
+            this.startGame();
+        }
+        createSeats(){
+            this.players.forEach((p,i)=>{
+                const seat=document.createElement('div');
+                seat.className='player';
+                seat.id='player-'+i;
+                seat.style.left=positions[i].x+'%';
+                seat.style.top=positions[i].y+'%';
+                seat.style.transform='translate(-50%,-50%)';
+                seat.innerHTML=`<div class="avatar">${p.avatar}</div>
+                    <div class="name">${p.name}</div>
+                    <div>Chips: <span class="chips">0</span></div>
+                    <div>Status: <span class="status">Ready</span></div>
+                    <div class="cards" id="cards-${i}"></div>`;
+                this.table.appendChild(seat);
+            });
         }
         attachEvents(){
-            this.buttons.look.onclick=()=>this.humanLook();
-            this.buttons.call.onclick=()=>this.humanCall();
-            this.buttons.raise.onclick=()=>this.humanRaise();
-            this.buttons.fold.onclick=()=>this.humanFold();
-            this.buttons.compare.onclick=()=>this.humanCompare();
+            this.startBtn.onclick=()=>this.startGame();
             this.newRoundBtn.onclick=()=>{this.overlay.style.display='none';this.startRound();};
+            this.buttons.look.onclick=()=>this.onLook();
+            this.buttons.call.onclick=()=>this.onCall();
+            this.buttons.raise.onclick=()=>this.onRaise();
+            this.buttons.fold.onclick=()=>this.onFold();
+            this.buttons.compare.onclick=()=>this.onCompare();
         }
-        log(msg){
-            const time=new Date().toLocaleTimeString();
-            this.logBox.innerHTML+=`<div>[${time}] ${msg}</div>`;
-            this.logBox.scrollTop=this.logBox.scrollHeight;
-        }
-        renderSeats(){
-            this.table.innerHTML='<div id="pot">Pot: '+this.pot+'</div>';
-            this.potBox=document.getElementById('pot');
+        startGame(){
             this.players.forEach((p,i)=>{
-                const d=document.createElement('div');
-                d.className='player';
-                d.style.left=positions[i].x+'%';
-                d.style.top=positions[i].y+'%';
-                d.style.transform='translate(-50%,-50%)';
-                d.id='player-'+i;
-                d.innerHTML=`<div class="avatar">${i===0?'😎':'🤖'}</div>
-                <div><strong>${p.name}</strong></div>
-                <div>Chips: <span class="chips">${p.chips}</span></div>
-                <div>Status: <span class="status">Ready</span></div>
-                <div class="cards" id="cards-${i}"></div>`;
-                this.table.appendChild(d);
+                const val=parseInt(this.settingInputs[i].value)||0;
+                p.chips=Math.max(0,val);
             });
+            this.baseAnte=Math.max(1,parseInt(this.anteInput.value)||5);
+            this.dealer=0;
+            this.logBox.innerHTML='';
+            this.log('Game initialized. Click actions when it is your turn.');
+            this.startRound();
         }
-        updatePlayerView(p){
-            const seat=document.getElementById('player-'+p.id);
-            seat.querySelector('.chips').textContent=p.chips;
-            seat.querySelector('.status').textContent=p.folded?'Folded':(p.allin?'All-in':(p.looked?'Looked':'Hidden'));
-            const cardsBox=document.getElementById('cards-'+p.id);
-            cardsBox.innerHTML='';
-            const show=p.looked || this.revealing;
-            p.hand.forEach(card=>{
-                const c=document.createElement('div');
-                c.className='card'+(show?'' :' hidden-card');
-                c.textContent=show?card:'';
-                cardsBox.appendChild(c);
-            });
+        startRound(){
+            this.revealAll=false;
+            this.players.forEach(p=>p.resetRound());
+            this.deck=this.shuffle();
+            this.pot=0;this.currentBet=0;this.betRound=1;this.activeCount=this.players.length;
+            this.deal();
+            this.collectAnte();
+            this.turn=this.findNextActive((this.dealer+1)%this.players.length,true);
+            this.updateAll();
+            this.log(`New round. Dealer: ${this.players[this.dealer].name}`);
+            this.nextTurn();
         }
-        updatePot(){
-            this.potBox.textContent=`Pot: ${this.pot}`;
-        }
-        shuffleDeck(){
+        shuffle(){
             const deck=[];
             suits.forEach(s=>ranks.forEach(r=>deck.push(r+s)));
             for(let i=deck.length-1;i>0;i--){
@@ -250,200 +271,228 @@ button:disabled{
             }
             return deck;
         }
-        startRound(){
-            this.players.forEach(p=>p.resetForRound());
-            this.revealing=false;
-            this.deck=this.shuffleDeck();
-            this.pot=0;this.currentBet=0;this.betRound=1;
-            this.collectAnte(5);
-            this.dealCards();
-            this.turn=(this.dealer+1)%this.players.length;
-            this.activeCount=this.players.length;
-            this.renderSeats();
-            this.players.forEach(p=>this.updatePlayerView(p));
-            this.log(`New round started. Dealer: Player ${this.dealer}`);
-            this.updatePot();
-            this.nextTurn();
-        }
-        collectAnte(amount){
-            this.players.forEach(p=>{p.chips-=amount;this.pot+=amount;});
-        }
-        dealCards(){
-            for(let i=0;i<3;i++){
+        deal(){
+            for(let c=0;c<3;c++){
                 this.players.forEach(p=>p.hand.push(this.deck.pop()));
             }
         }
+        collectAnte(){
+            this.players.forEach(p=>{
+                const pay=Math.min(this.baseAnte,p.chips);
+                p.chips-=pay;this.pot+=pay;p.currentBet=pay;
+                if(p.chips===0) p.allin=true;
+            });
+            this.currentBet=this.baseAnte;
+            this.updatePot();
+        }
+        log(msg){
+            const t=new Date().toLocaleTimeString();
+            this.logBox.innerHTML+=`<div>[${t}] ${msg}</div>`;
+            this.logBox.scrollTop=this.logBox.scrollHeight;
+        }
+        updateAll(){
+            this.players.forEach(p=>this.updatePlayer(p));
+            this.updatePot();
+        }
+        updatePot(){this.potBox.textContent=`Pot: ${this.pot}`;}
+        updatePlayer(p){
+            const seat=document.getElementById('player-'+p.id);
+            seat.querySelector('.chips').textContent=p.chips;
+            let status='Ready';
+            if(p.folded) status='Folded';
+            else if(p.allin) status='All-in';
+            else if(p.looked) status='Looked';
+            seat.querySelector('.status').textContent=status;
+            const cardsBox=document.getElementById('cards-'+p.id);
+            cardsBox.innerHTML='';
+            const show = this.revealAll || (p.id===0 && p.looked);
+            p.hand.forEach(card=>{
+                const c=document.createElement('div');
+                c.className='card'+(show?'':' hidden-card');
+                c.textContent=show?card:'';
+                cardsBox.appendChild(c);
+            });
+        }
         enableButtons(enable){
-            Object.values(this.buttons).forEach(btn=>btn.disabled=!enable);
+            Object.values(this.buttons).forEach(b=>b.disabled=!enable);
         }
         nextTurn(){
-            if(this.checkEndEarly())return;
-            this.turn=this.findNextActive(this.turn);
-            if(this.turn===-1){this.showdown();return;}
+            if(this.activeCount<=1){this.finishRound();return;}
+            if(this.pot>=potCap){this.log('Pot reached cap. Auto showdown.');this.showdown();return;}
             const current=this.players[this.turn];
-            if(this.activeCount===1){
-                this.finishRound();
+            if(current.folded||current.allin){
+                this.advanceTurn(this.turn);
                 return;
             }
-            if(this.turn===0){
+            if(current.id===0){
                 this.enableButtons(true);
-                this.log('Your turn.');
+                this.log('Your turn. Current bet: '+this.currentBet);
             }else{
                 this.enableButtons(false);
-                setTimeout(()=>this.aiAct(current),800);
+                setTimeout(()=>this.aiAct(current),700);
             }
         }
-        findNextActive(from){
-            let idx=(from)%this.players.length;
-            for(let i=0;i<this.players.length;i++){
-                idx=(idx+ (i===0?0:1))%this.players.length;
+        advanceTurn(prev){
+            const next=this.findNextActive(prev,false);
+            if(next===-1){this.showdown();return;}
+            if(next<=prev) this.betRound++;
+            this.turn=next;
+            this.nextTurn();
+        }
+        findNextActive(start,includeStart){
+            const len=this.players.length;
+            for(let i=0;i<len;i++){
+                const idx=(start+(includeStart?i:i+1))%len;
                 const p=this.players[idx];
                 if(!p.folded && !p.allin) return idx;
             }
             return -1;
         }
-        advanceTurn(){
-            const prev=this.turn;
-            this.turn=(this.turn+1)%this.players.length;
-            this.turn=this.findNextActive(prev);
-            if(this.turn===-1){
-                this.showdown();
-                return;
-            }
-            if(this.turn<=prev) this.betRound++;
-            this.nextTurn();
-        }
-        humanLook(){
+        onLook(){
             const me=this.players[0];
-            if(me.looked) return;
-            me.looked=true; this.updatePlayerView(me);
-            this.log('You looked at your cards.');
+            if(me.looked||me.folded) return;
+            me.looked=true;this.updatePlayer(me);this.log('You looked at your cards.');
         }
-        humanCall(){
+        onCall(){
             this.playerCall(this.players[0]);
         }
-        humanRaise(){
-            const amount=prompt('Raise amount (min 5):','20');
-            const raise=parseInt(amount||'0');
-            if(raise>=5){
-                this.playerRaise(this.players[0],raise);
-            }
+        onRaise(){
+            const me=this.players[0];
+            let val=prompt('Raise amount (min 5):','10');
+            const amt=parseInt(val||'0');
+            if(Number.isNaN(amt)||amt<5){alert('Minimum raise is 5');return;}
+            this.playerRaise(me,amt);
         }
-        humanFold(){
-            this.playerFold(this.players[0]);
+        onFold(){this.playerFold(this.players[0]);}
+        onCompare(){
+            if(this.betRound<2){alert('Compare allowed from second betting round.');return;}
+            const me=this.players[0];
+            const opps=this.players.filter(p=>p.id!==0 && !p.folded && !p.allin);
+            if(opps.length===0){alert('No target to compare.');return;}
+            const choice=prompt('Choose opponent id to compare:\n'+opps.map(o=>`${o.id}: ${o.name}`).join('\n'));
+            const target=opps.find(o=>o.id===parseInt(choice));
+            if(target) this.playerCompare(me,target);
         }
-        humanCompare(){
-            if(this.betRound<2){
-                alert('Compare allowed from second betting round.');return;
-            }
-            const target=this.chooseCompareTarget(this.players[0]);
-            if(target) this.playerCompare(this.players[0],target);
-        }
-        aiAct(p){
-            if(p.folded){this.advanceTurn();return;}
-            if(!p.looked && Math.random()>0.3) p.looked=true;
-            let action='call';
-            const strength=this.evaluateStrength(p.hand);
-            switch(p.type){
-                case 'calm':
-                    if(strength<0.35 && Math.random()>0.2){action='fold';}
-                    else if(strength>0.65){action='raise';}
-                    break;
-                case 'rich':
-                    action=strength>0.3?'raise':(Math.random()>0.3?'call':'fold');
-                    break;
-                case 'tricky':
-                    if(Math.random()>0.6) action='raise';
-                    else if(strength<0.25 && Math.random()>0.4) action='fold';
-                    break;
-                case 'rookie':
-                    const arr=['call','raise','fold'];action=arr[Math.floor(Math.random()*arr.length)];
-                    break;
-            }
-            if(action==='raise' && this.betRound<2 && Math.random()>0.7) action='call';
-            if(action==='fold') this.playerFold(p,true);
-            else if(action==='raise') this.playerRaise(p,10+Math.floor(Math.random()*20),true);
-            else if(action==='call') this.playerCall(p,true);
-            else this.playerCall(p,true);
-        }
-        playerCall(p,isAI){
+        playerCall(p){
+            if(p.folded||p.allin){return;}
             const toCall=this.currentBet-p.currentBet;
-            const amount=Math.min(toCall,p.chips);
-            p.chips-=amount; p.currentBet+=amount; this.pot+=amount;
-            if(p.chips===0) p.allin=true;
-            this.log(`${p.name} called ${amount}.`);
-            this.updatePot(); this.updatePlayerView(p);
-            this.advanceTurn();
+            const pay=Math.min(toCall,p.chips);
+            p.chips-=pay; p.currentBet+=pay; this.pot+=pay;
+            if(p.chips===0){p.allin=true;}
+            this.log(`${p.name} calls ${pay}.`);
+            this.updatePlayer(p);this.updatePot();
+            this.enableButtons(false);
+            this.advanceTurn(p.id);
         }
-        playerRaise(p,raise,isAI){
+        playerRaise(p,raise){
+            if(p.folded||p.allin) return;
             const toCall=this.currentBet-p.currentBet;
             const total=toCall+raise;
             const pay=Math.min(total,p.chips);
             p.chips-=pay; p.currentBet+=pay; this.pot+=pay;
             this.currentBet=p.currentBet;
             if(p.chips===0) p.allin=true;
-            this.log(`${p.name} raised by ${raise} (paid ${pay}).`);
-            this.updatePot(); this.updatePlayerView(p);
-            this.advanceTurn();
-            if(this.pot>=maxPotCap){
-                this.log('Pot reached cap. Auto showdown.');
-                this.showdown();
-            }
+            this.log(`${p.name} raises by ${raise} (pays ${pay}).`);
+            this.updatePlayer(p);this.updatePot();
+            this.enableButtons(false);
+            if(this.pot>=potCap){this.log('Pot reached cap. Auto showdown.');this.showdown();return;}
+            this.advanceTurn(p.id);
         }
-        playerFold(p,isAI){
-            p.folded=true; this.activeCount--;
-            this.log(`${p.name} folded.`);
-            this.updatePlayerView(p);
-            if(this.activeCount===1){this.finishRound();return;}
-            this.advanceTurn();
+        playerFold(p){
+            if(p.folded) return;
+            p.folded=true;this.activeCount--;
+            this.log(`${p.name} folds.`);
+            this.updatePlayer(p);
+            this.enableButtons(false);
+            if(this.activeCount<=1){this.finishRound();return;}
+            this.advanceTurn(p.id);
         }
         playerCompare(p,target){
+            if(p.folded||target.folded||p.allin) return;
+            const fee=Math.min(this.currentBet*2,p.chips);
+            p.chips-=fee;this.pot+=fee;p.currentBet+=fee;
+            if(p.chips===0) p.allin=true;
             const result=this.compareHands(p.hand,target.hand);
             let loser=null;
-            if(result>0) loser=target; else if(result<0) loser=p; else loser=p; // initiator loses tie
-            loser.folded=true; this.activeCount--;
-            this.log(`${p.name} compared with ${target.name}. ${loser.name} lost.`);
-            this.updatePlayerView(p);this.updatePlayerView(target);
-            if(this.activeCount===1){this.finishRound();return;}
-            this.advanceTurn();
+            if(result>0) loser=target; else if(result<0) loser=p; else loser=p; // tie loses initiator
+            loser.folded=true;this.activeCount--;
+            this.log(`${p.name} compares with ${target.name}. ${loser.name} loses and folds (fee ${fee}).`);
+            this.updatePlayer(p);this.updatePlayer(target);this.updatePot();
+            this.enableButtons(false);
+            if(this.activeCount<=1){this.finishRound();return;}
+            this.advanceTurn(p.id);
+        }
+        aiAct(p){
+            if(p.folded) {this.advanceTurn(p.id);return;}
+            if(!p.looked && Math.random()>0.25) p.looked=true;
+            const strength=this.evaluateStrength(p.hand);
+            let action='call';
+            if(p.type==='calm'){
+                if(strength<0.3 && Math.random()>0.25) action='fold';
+                else if(strength>0.75 && p.chips>this.currentBet) action='raise';
+            }else if(p.type==='rich'){
+                if(strength<0.15 && Math.random()>0.4) action='fold';
+                else if(Math.random()>0.35 && p.chips>this.currentBet) action='raise';
+                else action='call';
+            }else if(p.type==='tricky'){
+                if(Math.random()>0.65 && p.chips>this.currentBet) action='raise';
+                else if(strength<0.22 && Math.random()>0.6) action='fold';
+                else action=Math.random()>0.4?'call':'raise';
+            }else if(p.type==='rookie'){
+                const opts=['call','fold','raise'];
+                action=opts[Math.floor(Math.random()*opts.length)];
+            }
+            if(action==='raise' && p.chips<=this.currentBet) action='call';
+            if(action==='fold' && this.currentBet===p.currentBet) action='call';
+            if(this.betRound>=2 && !p.allin && !p.folded){
+                const compareChance=(p.type==='calm'?0.05:(p.type==='rich'?0.25:(p.type==='tricky'?0.25:0.1)));
+                if(Math.random()<compareChance){
+                    const target=this.chooseCompareTarget(p);
+                    if(target) {this.playerCompare(p,target);return;}
+                }
+            }
+            if(action==='fold') this.playerFold(p);
+            else if(action==='raise'){
+                const base= p.type==='rich'?15:10;
+                const extra= Math.floor(Math.random()*20);
+                const amount=Math.max(5,base+extra);
+                this.playerRaise(p,amount);
+            }
+            else this.playerCall(p);
         }
         chooseCompareTarget(p){
-            const opponents=this.players.filter(pl=>pl.id!==p.id && !pl.folded);
-            return opponents[Math.floor(Math.random()*opponents.length)];
-        }
-        checkEndEarly(){
-            if(this.pot>=maxPotCap){this.showdown();return true;}return false;
+            const opps=this.players.filter(o=>o.id!==p.id && !o.folded && !o.allin);
+            if(opps.length===0) return null;
+            return opps[Math.floor(Math.random()*opps.length)];
         }
         finishRound(){
-            const winner=this.players.find(p=>!p.folded);
+            const winner=this.players.find(pl=>!pl.folded);
+            if(!winner){this.showdown();return;}
             winner.chips+=this.pot;
             this.log(`${winner.name} wins the pot ${this.pot}.`);
-            this.revealAndEnd(winner);
+            this.revealAndShow(winner);
         }
         showdown(){
-            this.revealing=true;
-            this.players.forEach(p=>this.updatePlayerView(p));
-            let winner=this.players.filter(p=>!p.folded)[0];
-            this.players.filter(p=>!p.folded).forEach(p=>{
-                if(p!==winner){
-                    const res=this.compareHands(p.hand,winner.hand);
-                    if(res>0) winner=p;
-                }
-            });
+            this.revealAll=true;
+            this.players.forEach(p=>this.updatePlayer(p));
+            const active=this.players.filter(p=>!p.folded);
+            let winner=active[0];
+            active.slice(1).forEach(p=>{if(this.compareHands(p.hand,winner.hand)>0) winner=p;});
             winner.chips+=this.pot;
-            this.log(`Showdown! ${winner.name} takes the pot ${this.pot}.`);
-            this.revealAndEnd(winner);
+            this.log(`Showdown! ${winner.name} takes pot ${this.pot}.`);
+            this.revealAndShow(winner);
         }
-        revealAndEnd(winner){
-            this.revealing=true;
-            this.players.forEach(p=>this.updatePlayerView(p));
-            this.resultText.innerHTML=`Winner: <strong>${winner.name}</strong> with ${this.describeHand(winner.hand)}<br/>Chips: ${winner.chips}`;
+        revealAndShow(winner){
+            this.revealAll=true;
+            this.players.forEach(p=>this.updatePlayer(p));
+            this.resultText.innerHTML=`Winner: <strong>${winner.name}</strong><br>Hand: ${this.describeHand(winner.hand)}<br>Chips: ${winner.chips}`;
             this.overlay.style.display='flex';
             this.dealer=(this.dealer+1)%this.players.length;
+            this.enableButtons(false);
         }
         evaluateStrength(hand){
-            const evalObj=this.handRank(hand);
-            return evalObj.score/100;
+            const hr=this.handRank(hand);
+            return hr.rank/8 + (hr.detail[0]||0)/20;
         }
         handRank(hand){
             const rankVals={'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13,'A':14};
@@ -451,70 +500,56 @@ button:disabled{
             const suitsHand=hand.map(c=>c.slice(-1));
             const flush=suitsHand.every(s=>s===suitsHand[0]);
             const counts={}; vals.forEach(v=>counts[v]=(counts[v]||0)+1);
+            const unique=Object.keys(counts).map(v=>parseInt(v)).sort((a,b)=>b-a);
             const pairs=Object.values(counts).filter(v=>v===2).length;
             const trips=Object.values(counts).includes(3);
-            const unique=Object.keys(counts).map(v=>parseInt(v)).sort((a,b)=>b-a);
-            const is235 = unique.length===3 && unique.includes(5)&&unique.includes(3)&&unique.includes(2) && !flush;
-            let straight=false, straightHigh=vals[0];
-            const sortedAsc=[...vals].sort((a,b)=>a-b);
-            if(sortedAsc[0]+1===sortedAsc[1] && sortedAsc[1]+1===sortedAsc[2]) straight=true;
-            if(sortedAsc[0]===2 && sortedAsc[1]===3 && sortedAsc[2]===14){straight=true;straightHigh=3;}
-            if(sortedAsc[0]===12 && sortedAsc[1]===13 && sortedAsc[2]===14){straight=true;straightHigh=14;}
+            let straight=false; let highStraight=vals[0];
+            const asc=[...vals].sort((a,b)=>a-b);
+            if(asc[0]+1===asc[1] && asc[1]+1===asc[2]){straight=true;highStraight=asc[2];}
+            if(asc[0]===2 && asc[1]===3 && asc[2]===14){straight=true;highStraight=3;}
+            if(asc[0]===12 && asc[1]===13 && asc[2]===14){straight=true;highStraight=14;}
+            const is235 = !flush && asc[0]===2 && asc[1]===3 && asc[2]===5;
             let rank=1; let detail=[]; let name='High Card';
-            if(is235){rank=7;detail=vals;name='Special 2-3-5';}
-            else if(trips){rank=6;detail=[unique[0]];name='Three of a kind';}
-            else if(straight && flush){rank=5;detail=[straightHigh];name='Straight Flush';}
-            else if(flush){rank=4;detail=vals;name='Flush';}
-            else if(straight){rank=3;detail=[straightHigh];name='Straight';}
+            if(trips){rank=7;detail=[unique[0]];name='豹子 (Three of a kind)';}
+            else if(is235){rank=6;detail=vals;name='特殊235';}
+            else if(straight && flush){rank=5;detail=[highStraight];name='顺金 (Straight Flush)';}
+            else if(flush){rank=4;detail=vals;name='金花 (Flush)';}
+            else if(straight){rank=3;detail=[highStraight];name='顺子 (Straight)';}
             else if(pairs===1){
-                const pairRank=parseInt(Object.keys(counts).find(k=>counts[k]===2));
+                const pair=parseInt(Object.keys(counts).find(k=>counts[k]===2));
                 const kicker=parseInt(Object.keys(counts).find(k=>counts[k]===1));
-                rank=2;detail=[pairRank,kicker];name='Pair';
-            }else{rank=1;detail=vals;name='High Card';}
-            let score=rank*10+ (detail[0]||0);
-            return {rank,detail,name,score,vals,straightHigh};
+                rank=2;detail=[pair,kicker];name='对子 (Pair)';
+            }else{rank=1;detail=vals;name='单张 (High Card)';}
+            return {rank,detail,name,vals,highStraight,is235,flush};
         }
         compareHands(a,b){
-            const ra=this.handRank(a), rb=this.handRank(b);
-            if(ra.rank!==rb.rank) return ra.rank>rb.rank?1:-1;
-            switch(ra.rank){
-                case 7: return 1; // only 2-3-5 exists beating others of same rank unrealistic
-                case 6:
-                    if(ra.detail[0]!==rb.detail[0]) return ra.detail[0]>rb.detail[0]?1:-1;
-                    break;
+            const ha=this.handRank(a), hb=this.handRank(b);
+            if(ha.rank!==hb.rank) return ha.rank>hb.rank?1:-1;
+            switch(ha.rank){
+                case 7: return ha.detail[0]===hb.detail[0]?0:(ha.detail[0]>hb.detail[0]?1:-1);
+                case 6: return 0; // 235 specials tie -> initiator loses handled elsewhere
                 case 5:
                 case 3:
-                    const sa=this.straightValue(a); const sb=this.straightValue(b);
-                    if(sa!==sb) return sa>sb?1:-1;
+                    if(ha.detail[0]!==hb.detail[0]) return ha.detail[0]>hb.detail[0]?1:-1;
                     break;
                 case 4:
                 case 1:
                     for(let i=0;i<3;i++){
-                        if(ra.vals[i]!==rb.vals[i]) return ra.vals[i]>rb.vals[i]?1:-1;
+                        if(ha.vals[i]!==hb.vals[i]) return ha.vals[i]>hb.vals[i]?1:-1;
                     }
                     break;
                 case 2:
-                    if(ra.detail[0]!==rb.detail[0]) return ra.detail[0]>rb.detail[0]?1:-1;
-                    if(ra.detail[1]!==rb.detail[1]) return ra.detail[1]>rb.detail[1]?1:-1;
+                    if(ha.detail[0]!==hb.detail[0]) return ha.detail[0]>hb.detail[0]?1:-1;
+                    if(ha.detail[1]!==hb.detail[1]) return ha.detail[1]>hb.detail[1]?1:-1;
                     break;
             }
             return 0;
-        }
-        straightValue(hand){
-            const rankVals={'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13,'A':14};
-            const vals=hand.map(c=>rankVals[c.slice(0,-1)]).sort((a,b)=>a-b);
-            const isAKQ=vals[0]===12&&vals[1]===13&&vals[2]===14;
-            const isA23=vals[0]===2&&vals[1]===3&&vals[2]===14;
-            if(isAKQ) return 100;
-            if(isA23) return 90;
-            return vals[2];
         }
         describeHand(hand){
             const h=this.handRank(hand);
             return `${h.name} (${hand.join(', ')})`;
         }
     }
-
     new Game();
 })();
 </script>
